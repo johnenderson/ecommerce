@@ -4,11 +4,15 @@ import org.springframework.stereotype.Service;
 import tech.buildrun.ecommerce.controller.dto.CreateUserDTO;
 import tech.buildrun.ecommerce.entities.BillingAddressEntity;
 import tech.buildrun.ecommerce.entities.UserEntity;
+import tech.buildrun.ecommerce.exception.CreateBillingAddressException;
+import tech.buildrun.ecommerce.exception.CreateUserException;
 import tech.buildrun.ecommerce.repository.BillingAddressRepository;
 import tech.buildrun.ecommerce.repository.UserRepository;
 
 import java.util.Optional;
 import java.util.UUID;
+
+import static org.springframework.util.StringUtils.hasText;
 
 @Service
 public class UserService {

@@ -10,10 +10,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import tech.buildrun.ecommerce.controller.dto.CreateUserDTO;
 import tech.buildrun.ecommerce.entities.UserEntity;
+import tech.buildrun.ecommerce.exception.CreateBillingAddressException;
+import tech.buildrun.ecommerce.exception.CreateUserException;
 import tech.buildrun.ecommerce.service.UserService;
 
 import java.net.URI;
 import java.util.UUID;
+
+import static org.springframework.util.StringUtils.hasText;
 
 @RestController
 @RequestMapping(path = "/users")
@@ -37,6 +41,14 @@ public class UserController {
 
     @PostMapping
     public ResponseEntity<Void> createUser(@RequestBody CreateUserDTO dto){
+
+        if (!hasText(dto.fullName())) {
+            throw new CreateUserException("fullname must not be null");
+        }
+
+        if(!hasText(dto.address()) || !hasText(dto.number())) {
+            throw new CreateBillingAddressException("address and number must not be null");
+        }
 
         var user = userService.createUser(dto);
 
