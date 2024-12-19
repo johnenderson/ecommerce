@@ -1,0 +1,160 @@
+{
+  "name": "Ecommerce",
+  "version": "1",
+  "items": [
+    {
+      "type": "http",
+      "name": "Create Order",
+      "seq": 5,
+      "request": {
+        "url": "http://localhost:8080/orders",
+        "method": "POST",
+        "headers": [],
+        "params": [],
+        "body": {
+          "mode": "json",
+          "json": "{\n  \"userId\": \"c62e7cea-7f38-4d63-823b-9688a14b95c4\",\n  \"items\": [\n    {\n      \"productId\": 1,\n      \"quantity\": 1\n    },\n    {\n      \"productId\": 2,\n      \"quantity\": 1\n    },\n    {\n      \"productId\": 3,\n      \"quantity\": 3\n    }\n  \n  ]\n}",
+          "formUrlEncoded": [],
+          "multipartForm": []
+        },
+        "script": {},
+        "vars": {},
+        "assertions": [],
+        "tests": "",
+        "auth": {
+          "mode": "none"
+        }
+      }
+    },
+    {
+      "type": "http",
+      "name": "Create User",
+      "seq": 2,
+      "request": {
+        "url": "http://localhost:8080/users",
+        "method": "POST",
+        "headers": [],
+        "params": [],
+        "body": {
+          "mode": "json",
+          "json": "{\n  \"fullName\": \"John\",\n  \"address\": \"Rua\",\n  \"number\": \"100\",\n  \"complement\": \"Casa\"\n}",
+          "formUrlEncoded": [],
+          "multipartForm": []
+        },
+        "script": {},
+        "vars": {},
+        "assertions": [],
+        "tests": "",
+        "auth": {
+          "mode": "none"
+        }
+      }
+    },
+    {
+      "type": "http",
+      "name": "Delete User By Id",
+      "seq": 4,
+      "request": {
+        "url": "http://localhost:8080/users/7773eb35-c839-4c5b-b10d-2311281d87fb",
+        "method": "DELETE",
+        "headers": [],
+        "params": [],
+        "body": {
+          "mode": "none",
+          "json": "{\n  \"fullName\": \"John Enderson da Suilva\",\n  \"address\": \"Rua Agulhas Negras\",\n  \"number\": \"45\",\n  \"complement\": \"Casa\"\n}",
+          "formUrlEncoded": [],
+          "multipartForm": []
+        },
+        "script": {},
+        "vars": {},
+        "assertions": [],
+        "tests": "",
+        "auth": {
+          "mode": "none"
+        }
+      }
+    },
+    {
+      "type": "http",
+      "name": "Get User By Id",
+      "seq": 3,
+      "request": {
+        "url": "http://localhost:8080/users/c5dd999b-0817-4904-b2b5-39d7d81ba6e1",
+        "method": "GET",
+        "headers": [],
+        "params": [],
+        "body": {
+          "mode": "none",
+          "json": "{\n  \"fullName\": \"John Enderson da Suilva\",\n  \"address\": \"Rua Agulhas Negras\",\n  \"number\": \"45\",\n  \"complement\": \"Casa\"\n}",
+          "formUrlEncoded": [],
+          "multipartForm": []
+        },
+        "script": {},
+        "vars": {},
+        "assertions": [],
+        "tests": "",
+        "auth": {
+          "mode": "none"
+        }
+      }
+    },
+    {
+      "type": "http",
+      "name": "List Orders",
+      "seq": 6,
+      "request": {
+        "url": "http://localhost:8080/orders",
+        "method": "GET",
+        "headers": [],
+        "params": [],
+        "body": {
+          "mode": "json",
+          "json": "{\n  \"userId\": \"c62e7cea-7f38-4d63-823b-9688a14b95c4\",\n  \"items\": [\n    {\n      \"productId\": 1,\n      \"quantity\": 1\n    },\n    {\n      \"productId\": 2,\n      \"quantity\": 2\n    }\n  ]\n}",
+          "formUrlEncoded": [],
+          "multipartForm": []
+        },
+        "script": {},
+        "vars": {},
+        "assertions": [],
+        "tests": "",
+        "auth": {
+          "mode": "none"
+        }
+      }
+    },
+    {
+      "type": "http",
+      "name": "Get Order By Id",
+      "seq": 7,
+      "request": {
+        "url": "http://localhost:8080/orders/2",
+        "method": "GET",
+        "headers": [],
+        "params": [],
+        "body": {
+          "mode": "json",
+          "json": "{\n  \"userId\": \"c62e7cea-7f38-4d63-823b-9688a14b95c4\",\n  \"items\": [\n    {\n      \"productId\": 1,\n      \"quantity\": 1\n    },\n    {\n      \"productId\": 2,\n      \"quantity\": 2\n    }\n  ]\n}",
+          "formUrlEncoded": [],
+          "multipartForm": []
+        },
+        "script": {},
+        "vars": {},
+        "assertions": [],
+        "tests": "",
+        "auth": {
+          "mode": "none"
+        }
+      }
+    }
+  ],
+  "environments": [],
+  "brunoConfig": {
+    "version": "1",
+    "name": "Ecommerce",
+    "type": "collection",
+    "ignore": [
+      "node_modules",
+      ".git"
+    ]
+  }
+}
