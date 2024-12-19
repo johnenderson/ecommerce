@@ -1,15 +1,17 @@
 package tech.buildrun.ecommerce.service;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 import tech.buildrun.ecommerce.controller.dto.CreateOrderDTO;
 import tech.buildrun.ecommerce.controller.dto.OrderItemDTO;
+import tech.buildrun.ecommerce.controller.dto.OrderSummaryDto;
 import tech.buildrun.ecommerce.entities.OrderEntity;
 import tech.buildrun.ecommerce.entities.OrderItemEntity;
 import tech.buildrun.ecommerce.entities.OrderItemId;
 import tech.buildrun.ecommerce.entities.ProductEntity;
 import tech.buildrun.ecommerce.entities.UserEntity;
 import tech.buildrun.ecommerce.exception.CreateOrderException;
-import tech.buildrun.ecommerce.repository.OrderItemRepository;
 import tech.buildrun.ecommerce.repository.OrderRepository;
 import tech.buildrun.ecommerce.repository.ProductRepository;
 import tech.buildrun.ecommerce.repository.UserRepository;
@@ -17,6 +19,7 @@ import tech.buildrun.ecommerce.repository.UserRepository;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class OrderService {
@@ -54,7 +57,7 @@ public class OrderService {
         order.setTotal(total);
 
         // 5. Repository save
-        return  orderRepository.save(order);
+        return orderRepository.save(order);
     }
 
     private UserEntity validateUser(CreateOrderDTO dto) {
@@ -107,4 +110,19 @@ public class OrderService {
                 .orElse(BigDecimal.ZERO);
     }
 
+    public Page<OrderSummaryDto> findAll(Integer page, Integer pageSize) {
+        return orderRepository.findAll(PageRequest.of(page, pageSize))
+                .map(entity -> {
+                    return new OrderSummaryDto(
+                            entity.getOrderId(),
+                            entity.getOrderDate(),
+                            entity.getUser().getUserId(),
+                            entity.getTotal()
+                    );
+                });
+    }
+
+    public Optional<OrderEntity> findById(Long orderId) {
+        return orderRepository.findById(orderId);
+    }
 }
